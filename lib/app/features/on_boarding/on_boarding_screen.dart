@@ -5,8 +5,11 @@ import 'package:montra/app/features/on_boarding/model/on_boarding_model.dart';
 import 'package:montra/app/features/on_boarding/widgets/on_boarding_item.dart';
 import 'package:montra/app/reusable_widgets/button.dart';
 
+import '../authentication/login/login_screen.dart';
+
 class OnBoardingScreen extends StatefulWidget {
   const OnBoardingScreen({super.key});
+  static const String id = '/on_boarding_screen';
 
   @override
   State<OnBoardingScreen> createState() => _OnBoardingScreenState();
@@ -17,7 +20,9 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.white,
         automaticallyImplyLeading: false,
       ),
       body: SizedBox(
@@ -89,7 +94,9 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               text: AppHeading.hLogin,
               textColor: AppColors.primary,
               padding: const EdgeInsets.symmetric(horizontal: 30),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).pushNamed(LoginScreen.id);
+              },
             )
           ],
         ),

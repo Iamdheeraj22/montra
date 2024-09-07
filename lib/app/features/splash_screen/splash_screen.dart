@@ -4,7 +4,7 @@ import 'package:montra/app/features/on_boarding/on_boarding_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
-
+  static const String id = '/splash_screen';
   @override
   State<SplashScreen> createState() => _SplashScreenState();
 }
@@ -15,8 +15,7 @@ class _SplashScreenState extends State<SplashScreen> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       Future.delayed(const Duration(seconds: 2), () {
         if (mounted) {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (_) => const OnBoardingScreen()));
+          Navigator.pushReplacementNamed(context, OnBoardingScreen.id);
         }
       });
     });
