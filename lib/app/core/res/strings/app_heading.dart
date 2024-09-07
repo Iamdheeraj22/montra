@@ -8,4 +8,10 @@ class AppHeading {
   static const String hOnBoardingHeading3 = 'Planning ahead';
   static const String hSignUp = 'Sign Up';
   static const String hLogin = 'Login';
+  static const String hOrWith = 'Or with';
+  static const String hEmail = 'Email';
+  static const String hPassword = 'Password';
+  static const String hForgotPassword = 'Forgot Password?';
+  static const String hDoNotHaveAccount = "Don't have an account yet? ";
+  static const String hSignUpWithGoogle = 'Sign Up with Google';
 }
