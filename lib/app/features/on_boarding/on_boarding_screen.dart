@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:montra/app/core/res/app_colors.dart';
 import 'package:montra/app/core/res/strings/app_heading.dart';
+import 'package:montra/app/features/authentication/sign_up/sign_up_screen.dart';
 import 'package:montra/app/features/on_boarding/model/on_boarding_model.dart';
 import 'package:montra/app/features/on_boarding/widgets/on_boarding_item.dart';
 import 'package:montra/app/reusable_widgets/button.dart';
@@ -84,7 +85,9 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             Button(
               text: AppHeading.hSignUp,
               padding: const EdgeInsets.symmetric(horizontal: 30),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).pushNamed(SignUpScreen.id);
+              },
             ),
             const SizedBox(
               height: 15,

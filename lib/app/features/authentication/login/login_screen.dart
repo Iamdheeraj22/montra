@@ -1,15 +1,16 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:montra/app/core/res/app_colors.dart';
-import 'package:montra/app/core/res/app_images.dart';
 import 'package:montra/app/core/res/strings/app_heading.dart';
 import 'package:montra/app/core/res/strings/app_messages.dart';
 import 'package:montra/app/core/utils/validators.dart';
 import 'package:montra/app/features/authentication/login/bloc/login_bloc.dart';
+import 'package:montra/app/features/authentication/sign_up/sign_up_screen.dart';
+import 'package:montra/app/features/on_boarding/on_boarding_screen.dart';
 import 'package:montra/app/reusable_widgets/button.dart';
 import 'package:montra/app/reusable_widgets/edit_text.dart';
+import 'package:montra/app/reusable_widgets/google_button.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -32,6 +33,16 @@ class _LoginScreenState extends State<LoginScreen> {
           appBar: AppBar(
             backgroundColor: Colors.white,
             centerTitle: true,
+            leading: IconButton(
+              onPressed: () {
+                Navigator.pushNamedAndRemoveUntil(
+                    context, OnBoardingScreen.id, (route) => false);
+              },
+              icon: const Icon(
+                Icons.arrow_back,
+                color: Colors.black,
+              ),
+            ),
             title: const Text(
               AppHeading.hLogin,
               style: TextStyle(
@@ -120,37 +131,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   const SizedBox(
                     height: 10,
                   ),
-                  InkWell(
+                  GoogleButton(
                     onTap: () {},
-                    borderRadius: BorderRadius.circular(10),
-                    child: Container(
-                      alignment: Alignment.center,
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      constraints: const BoxConstraints(
-                        maxWidth: double.infinity,
-                        maxHeight: 50,
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SvgPicture.asset(
-                            AppImages.svgGoogle,
-                            height: 32,
-                            width: 32,
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          const Text(
-                            AppHeading.hSignUpWithGoogle,
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: AppColors.dark,
-                                fontSize: 18),
-                          ),
-                        ],
-                      ),
-                    ),
+                    title: AppHeading.hLoginWithGoogle,
                   ),
                   const SizedBox(
                     height: 20,
@@ -170,7 +153,10 @@ class _LoginScreenState extends State<LoginScreen> {
                             fontSize: 16,
                             decoration: TextDecoration.underline,
                           ),
-                          recognizer: TapGestureRecognizer()..onTap = () {},
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                              Navigator.pushNamed(context, SignUpScreen.id);
+                            },
                         ),
                       ],
                     ),
