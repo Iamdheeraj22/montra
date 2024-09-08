@@ -14,4 +14,7 @@ class AppHeading {
   static const String hForgotPassword = 'Forgot Password?';
   static const String hDoNotHaveAccount = "Don't have an account yet? ";
   static const String hSignUpWithGoogle = 'Sign Up with Google';
+  static const String hLoginWithGoogle = 'Login with Google';
+  static const String hName = 'Name';
+  static const String hAlreadyHaveAnAccount = 'Already have an account? ';
 }
