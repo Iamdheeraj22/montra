@@ -17,4 +17,6 @@ class AppHeading {
   static const String hLoginWithGoogle = 'Login with Google';
   static const String hName = 'Name';
   static const String hAlreadyHaveAnAccount = 'Already have an account? ';
+  static const String hContinue = 'Continue';
+  static const String hBackToLogin = 'Back to Login';
 }

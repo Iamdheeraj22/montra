@@ -17,4 +17,9 @@ class AppMessages {
   static const String sNameEmpty = 'Name cannot be empty';
   static const String sPrivacyPolicy1 = 'By signing up, you agree to our ';
   static const String sPrivacyPolicy2 = 'Terms of Service and Privacy Policy';
+  static const String sForgetPasswordMessage =
+      'Don\'t worry.\nEnter your email address and we will send you a link to reset your password';
+  static const String sEmailSentMessage1 = 'Your email is on the way';
+  static String sEmailSentMessage2(String mail) =>
+      'Check your email $mail and follow the instructions to reset your password';
 }

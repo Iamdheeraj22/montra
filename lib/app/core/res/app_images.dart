@@ -9,4 +9,5 @@ class AppImages {
   static const String svgOnBoarding2 = '${path}on_boarding_2.svg';
   static const String svgOnBoarding3 = '${path}on_boarding_3.svg';
   static const String svgGoogle = '${path}google.svg';
+  static const String svgEmailSent = '${path}email_sent.svg';
 }
