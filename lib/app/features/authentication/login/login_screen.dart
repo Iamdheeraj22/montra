@@ -5,6 +5,7 @@ import 'package:montra/app/core/res/app_colors.dart';
 import 'package:montra/app/core/res/strings/app_heading.dart';
 import 'package:montra/app/core/res/strings/app_messages.dart';
 import 'package:montra/app/core/utils/validators.dart';
+import 'package:montra/app/features/authentication/forget_password/forget_password_screen.dart';
 import 'package:montra/app/features/authentication/login/bloc/login_bloc.dart';
 import 'package:montra/app/features/authentication/sign_up/sign_up_screen.dart';
 import 'package:montra/app/features/on_boarding/on_boarding_screen.dart';
@@ -94,15 +95,20 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                   ),
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: TextButton(
-                      onPressed: () {},
-                      child: const Text(
-                        AppHeading.hForgotPassword,
-                        style: TextStyle(
-                          fontSize: 18,
-                          color: AppColors.primary,
+                  Hero(
+                    tag: AppHeading.hForgotPassword,
+                    child: Align(
+                      alignment: Alignment.centerRight,
+                      child: TextButton(
+                        onPressed: () {
+                          Navigator.pushNamed(context, ForgetPasswordScreen.id);
+                        },
+                        child: const Text(
+                          AppHeading.hForgotPassword,
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: AppColors.primary,
+                          ),
                         ),
                       ),
                     ),

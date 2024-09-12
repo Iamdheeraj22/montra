@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:montra/app/features/authentication/forget_password/email_sent_screen.dart';
+import 'package:montra/app/features/authentication/forget_password/forget_password_screen.dart';
 import 'package:montra/app/features/authentication/login/bloc/login_bloc.dart';
 import 'package:montra/app/features/authentication/login/login_screen.dart';
 import 'package:montra/app/features/authentication/sign_up/bloc/sign_up_bloc.dart';
@@ -39,6 +41,19 @@ class NavigationRoutes {
           builder: (_) => BlocProvider(
             create: (_) => SignUpBloc(),
             child: const SignUpScreen(),
+          ),
+        );
+      case ForgetPasswordScreen.id:
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (_) => const ForgetPasswordScreen(),
+        );
+      case EmailSentScreen.id:
+        final email = settings.arguments as String;
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (_) => EmailSentScreen(
+            email: email,
           ),
         );
       default:
