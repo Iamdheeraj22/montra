@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:equatable/equatable.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -15,6 +16,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
     on<SignUpAgreeChanged>(_onSignUpAgreeChanged);
     on<SignUpPasswordVisibilityChanged>(_onSignUpPasswordVisibilityChanged);
     on<Registration>(_onRegistration);
+    on<RegistrationWithGoogle>(_onRegistrationWithGoogle);
   }
 
   FutureOr<void> _onSignUpPasswordVisibilityChanged(
@@ -45,6 +47,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
           'name': event.name,
           'email': event.email,
           'uid': user.uid,
+          'userType': event.userType,
         });
         emit(state.copyWith(status: SignUpStatus.success));
         return;
@@ -56,6 +59,47 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
     } catch (e) {
       ToastMessage().show(message: e.toString());
       emit(state.copyWith(status: SignUpStatus.failure));
+      return;
+    }
+  }
+
+  FutureOr<void> _onRegistrationWithGoogle(
+      RegistrationWithGoogle event, Emitter<SignUpState> emit) async {
+    emit(state.copyWith(googleStatus: SignUpStatus.googleRegistration));
+    try {
+      final result = await AuthenticationService().signInWithGoogle();
+      final user = result.item1;
+      if (user != null) {
+        final isExist = await AuthenticationService().isEmailExist(user.uid);
+        if (isExist) {
+          emit(state.copyWith(googleStatus: SignUpStatus.failure));
+          ToastMessage().show(message: AppMessages.sAlreadyExistUser);
+          await AuthenticationService().signOut();
+          return;
+        } else {
+          DatabaseReference databaseReference =
+              FirebaseDatabase.instance.ref().child('users/${user.uid}');
+          databaseReference.set({
+            'name': user.displayName ?? 'Guest User ${Random().nextInt(1000)}',
+            'email': user.email,
+            'uid': user.uid,
+            'userType': 2,
+          });
+          emit(state.copyWith(
+              googleStatus: SignUpStatus.success, email: user.email));
+          return;
+        }
+      } else {
+        ToastMessage()
+            .show(message: result.item2 ?? AppMessages.sSomeThingWentWrong);
+        emit(state.copyWith(googleStatus: SignUpStatus.failure));
+        AuthenticationService().signOut();
+        return;
+      }
+    } catch (e) {
+      ToastMessage().show(message: e.toString());
+      emit(state.copyWith(googleStatus: SignUpStatus.failure));
+      AuthenticationService().signOut();
       return;
     }
   }

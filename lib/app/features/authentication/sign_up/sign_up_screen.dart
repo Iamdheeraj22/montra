@@ -6,6 +6,7 @@ import 'package:montra/app/core/res/strings/app_heading.dart';
 import 'package:montra/app/core/res/strings/app_messages.dart';
 import 'package:montra/app/core/utils/toast_message.dart';
 import 'package:montra/app/core/utils/validators.dart';
+import 'package:montra/app/features/authentication/authentication_service/authentication_service.dart';
 import 'package:montra/app/features/authentication/email_verification/email_verification_screen.dart';
 import 'package:montra/app/features/authentication/login/login_screen.dart';
 import 'package:montra/app/features/authentication/sign_up/bloc/sign_up_bloc.dart';
@@ -38,11 +39,20 @@ class _SignUpScreenState extends State<SignUpScreen> {
           );
           return;
         }
+        if (state.googleStatus == SignUpStatus.success) {
+          Navigator.pushReplacementNamed(
+            context,
+            EmailVerificationScreen.id,
+            arguments: state.email,
+          );
+          AuthenticationService().signOut();
+          return;
+        }
       },
       builder: (context, state) {
         return StateLoadingView(
           isLoading: (state.status == SignUpStatus.registering ||
-              state.status == SignUpStatus.emailVerificationSending),
+              state.googleStatus == SignUpStatus.googleRegistration),
           child: Scaffold(
             backgroundColor: Colors.white,
             appBar: AppBar(
@@ -186,6 +196,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   email: emailController.text.trim(),
                                   password: passwordController.text.trim(),
                                   name: nameController.text.trim(),
+                                  userType: 1,
                                 ),
                               );
                         },
@@ -204,7 +215,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         height: 10,
                       ),
                       GoogleButton(
-                        onTap: () {},
+                        onTap: () {
+                          context.read<SignUpBloc>().add(
+                                const RegistrationWithGoogle(),
+                              );
+                        },
                         title: AppHeading.hSignUpWithGoogle,
                       ),
                       const SizedBox(

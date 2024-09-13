@@ -47,7 +47,8 @@ class _LoginScreenState extends State<LoginScreen> {
       },
       builder: (context, state) {
         return StateLoadingView(
-          isLoading: state.status == LoginStatus.login,
+          isLoading: (state.status == LoginStatus.login ||
+              state.status == LoginStatus.loginWithGoogle),
           child: Scaffold(
             backgroundColor: Colors.white,
             appBar: AppBar(
@@ -168,7 +169,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       height: 10,
                     ),
                     GoogleButton(
-                      onTap: () {},
+                      onTap: () {
+                        context.read<LoginBloc>().add(LoginWithGoogle());
+                      },
                       title: AppHeading.hLoginWithGoogle,
                     ),
                     const SizedBox(

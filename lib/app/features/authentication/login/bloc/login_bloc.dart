@@ -14,6 +14,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   LoginBloc() : super(const LoginState()) {
     on<PasswordVisibility>(_onPasswordVisibility);
     on<LoginWithEmail>(_onLoginWithEmail);
+    on<LoginWithGoogle>(_onLoginWithGoogle);
   }
 
   FutureOr<void> _onPasswordVisibility(
@@ -51,6 +52,49 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       }
     } catch (e) {
       emit(state.copyWith(status: LoginStatus.failure));
+      return;
+    }
+  }
+
+  FutureOr<void> _onLoginWithGoogle(
+    LoginWithGoogle event,
+    Emitter<LoginState> emit,
+  ) async {
+    emit(state.copyWith(status: LoginStatus.loginWithGoogle));
+    try {
+      final result = await AuthenticationService().signInWithGoogle();
+      final user = result.item1;
+      if (user != null) {
+        //Check the email is exist or not
+        if (user.emailVerified) {
+          final isExist = await AuthenticationService().isEmailExist(user.uid);
+          if (!isExist) {
+            emit(state.copyWith(status: LoginStatus.failure));
+            ToastMessage().show(message: AppMessages.sEmailNotRegistered);
+            await AuthenticationService().signOut();
+            return;
+          } else {
+            emit(state.copyWith(status: LoginStatus.success));
+            AuthenticationService().signOut();
+            return;
+          }
+        } else {
+          emit(state.copyWith(status: LoginStatus.emailNotVerified));
+          ToastMessage().show(message: AppMessages.sEmailNotVerifiedMessage);
+          emit(state.copyWith(status: LoginStatus.failure));
+          AuthenticationService().signOut();
+          return;
+        }
+      } else {
+        ToastMessage()
+            .show(message: result.item2 ?? AppMessages.sSomeThingWentWrong);
+        emit(state.copyWith(status: LoginStatus.failure));
+        AuthenticationService().signOut();
+        return;
+      }
+    } catch (e) {
+      emit(state.copyWith(status: LoginStatus.failure));
+      AuthenticationService().signOut();
       return;
     }
   }
