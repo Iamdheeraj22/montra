@@ -39,4 +39,6 @@ class AppMessages {
   static const String sInvalidCredential = 'Invalid credential';
   static const String sEmailVerificationSuccess =
       'Email verification link sent successfully, please check your email.';
+  static const String sEmailNotRegistered =
+      'Email is not registered yet, please sign up first';
 }
