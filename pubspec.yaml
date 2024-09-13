@@ -49,6 +49,8 @@ dependencies:
   #Flutter Toast
   fluttertoast: ^8.2.8
 
+  #Google Sign-In
+  google_sign_in: ^6.2.1
   #Tuple
   tuple: ^2.0.2
 dev_dependencies:
