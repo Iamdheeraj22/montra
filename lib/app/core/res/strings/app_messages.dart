@@ -22,4 +22,21 @@ class AppMessages {
   static const String sEmailSentMessage1 = 'Your email is on the way';
   static String sEmailSentMessage2(String mail) =>
       'Check your email $mail and follow the instructions to reset your password';
+  static const String sEmailNotVerifiedMessage =
+      'Your email is not verified yet. Please verify your email first';
+  static const String sSomeThingWentWrong = 'Something went wrong';
+  static const String sPrivacyPolicyAgree =
+      'Please agree to the privacy policy with check the checkbox above to continue';
+  static const String sRegistrationSuccessVerifyEmail =
+      'Registration completed successfully. Please verify your email';
+  static const String sUserNotFound = 'No user found for that email.';
+  static const String sWrongPassword = 'Wrong password provided for that user.';
+  static const String sWeakPassword = 'The password provided is too weak.';
+  static const String sAlreadyExistUser =
+      'The account already exists for that email.';
+  static const String sEmailVerificationMessage =
+      'Your registered email is not verified yet. Please verify your email first';
+  static const String sInvalidCredential = 'Invalid credential';
+  static const String sEmailVerificationSuccess =
+      'Email verification link sent successfully, please check your email.';
 }
