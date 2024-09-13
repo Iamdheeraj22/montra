@@ -28,7 +28,8 @@ final class LoginState extends Equatable {
 
 enum LoginStatus {
   initial,
-  loading,
+  login,
+  emailNotVerified,
   success,
   failure,
 }

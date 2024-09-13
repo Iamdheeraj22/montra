@@ -8,3 +8,14 @@ class PasswordVisibility extends LoginEvent {
   @override
   List<Object?> get props => [];
 }
+
+class LoginWithEmail extends LoginEvent {
+  final String email;
+  final String password;
+  LoginWithEmail({
+    required this.email,
+    required this.password,
+  });
+  @override
+  List<Object?> get props => [email, password];
+}
