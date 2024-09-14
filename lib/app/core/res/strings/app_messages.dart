@@ -41,4 +41,6 @@ class AppMessages {
       'Email verification link sent successfully, please check your email.';
   static const String sEmailNotRegistered =
       'Email is not registered yet, please sign up first';
+  static const String sUserDetailsNotFound = 'User details not found';
+  static const String sNotAvailable = 'Not available';
 }
