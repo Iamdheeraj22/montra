@@ -25,3 +25,12 @@ class LoginWithGoogle extends LoginEvent {
   @override
   List<Object?> get props => [];
 }
+
+class SaveUserData extends LoginEvent {
+  SaveUserData({required this.uid});
+  final String uid;
+  @override
+  List<Object?> get props => [
+        uid,
+      ];
+}
