@@ -10,6 +10,7 @@ import 'package:montra/app/features/authentication/authentication_service/authen
 import 'package:montra/app/features/authentication/email_verification/email_verification_screen.dart';
 import 'package:montra/app/features/authentication/login/login_screen.dart';
 import 'package:montra/app/features/authentication/sign_up/bloc/sign_up_bloc.dart';
+import 'package:montra/app/features/home/home_page.dart';
 import 'package:montra/app/reusable_widgets/button.dart';
 import 'package:montra/app/reusable_widgets/edit_text.dart';
 import 'package:montra/app/reusable_widgets/google_button.dart';
@@ -42,8 +43,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         if (state.googleStatus == SignUpStatus.success) {
           Navigator.pushReplacementNamed(
             context,
-            EmailVerificationScreen.id,
-            arguments: state.email,
+            HomePage.id,
           );
           AuthenticationService().signOut();
           return;
