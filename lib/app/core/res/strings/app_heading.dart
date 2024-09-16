@@ -21,4 +21,8 @@ class AppHeading {
   static const String hContinue = 'Continue';
   static const String hBackToLogin = 'Back to Login';
   static const String hSendVerificationMail = 'Send verification email';
+  static const String hHome = 'Home';
+  static const String hTransactions = 'Transactions';
+  static const String hProfile = 'Profile';
+  static const String hBudget = 'Budget';
 }
