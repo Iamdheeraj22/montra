@@ -14,4 +14,7 @@ class AppIcons {
   static const String icTransaction = '${path}transaction.svg';
   static const String icUser = '${path}user.svg';
   static const String icTransfer = '${path}transfer.svg';
+  static const String icFood = '${path}food.svg';
+  static const String icShopping = '${path}shopping.svg';
+  static const String icSubscription = '${path}subscription.svg';
 }
