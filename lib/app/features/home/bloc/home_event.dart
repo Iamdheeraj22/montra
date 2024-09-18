@@ -18,3 +18,11 @@ class ShowMenu extends HomeEvent {
   @override
   List<Object> get props => [];
 }
+
+class ChangeFilterIndex extends HomeEvent {
+  const ChangeFilterIndex(this.index);
+  final int index;
+
+  @override
+  List<Object> get props => [index];
+}

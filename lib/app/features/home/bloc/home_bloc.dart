@@ -10,6 +10,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc() : super(const HomeState()) {
     on<ChangeIndex>(_onChangeIndex);
     on<ShowMenu>(_onShowMenu);
+    on<ChangeFilterIndex>(_onChangeFilterIndex);
   }
 
   FutureOr<void> _onChangeIndex(
@@ -24,5 +25,12 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     Emitter<HomeState> emit,
   ) {
     emit(state.copyWith(isMenuShow: !state.isMenuShow));
+  }
+
+  FutureOr<void> _onChangeFilterIndex(
+    ChangeFilterIndex event,
+    Emitter<HomeState> emit,
+  ) {
+    emit(state.copyWith(filterIndex: event.index));
   }
 }
