@@ -6,6 +6,9 @@ import 'package:montra/app/core/res/app_icons.dart';
 import 'package:montra/app/core/res/strings/app_heading.dart';
 import 'package:montra/app/features/home/bloc/home_bloc.dart';
 import 'package:montra/app/features/home/widgets/floating_button_item.dart';
+import 'package:montra/app/features/home/widgets/home_button_view.dart';
+import 'package:montra/app/features/home/widgets/transaction_filter.dart';
+import 'package:montra/app/features/home/widgets/user_image_view.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -33,6 +36,112 @@ class _HomePageState extends State<HomePage> {
             height: MediaQuery.of(context).size.height,
             child: Stack(
               children: [
+                Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 15, vertical: 15),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const UserImageView(),
+                          InkWell(
+                            borderRadius: BorderRadius.circular(30),
+                            onTap: () {},
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 25,
+                                vertical: 10,
+                              ),
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                  color: AppColors.blue20,
+                                  width: 1,
+                                ),
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                              child: Row(
+                                children: [
+                                  SizedBox(
+                                    height: 20,
+                                    width: 20,
+                                    child: SvgPicture.asset(
+                                      AppIcons.icArrowDown,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                  const SizedBox(width: 5),
+                                  const Text(
+                                    'October',
+                                    style: TextStyle(fontSize: 20),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                          IconButton(
+                            onPressed: () {},
+                            icon: SvgPicture.asset(
+                              AppIcons.icNotification,
+                              colorFilter: const ColorFilter.mode(
+                                AppColors.primary,
+                                BlendMode.srcIn,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    const Text(
+                      AppHeading.hAccountBalance,
+                      style: TextStyle(fontSize: 16, color: AppColors.light20),
+                    ),
+                    const Text(
+                      '\$2,500.00',
+                      style: TextStyle(
+                          fontSize: 42,
+                          color: AppColors.dark,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(
+                      height: 50,
+                    ),
+                    FittedBox(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          HomeButtonView(
+                            title: AppHeading.hIncome,
+                            color: AppColors.green,
+                            icon: AppIcons.icIncome,
+                            value: '\$1,500',
+                            onPressed: () {},
+                          ),
+                          const SizedBox(width: 35),
+                          HomeButtonView(
+                            title: AppHeading.hTotalExpense,
+                            color: AppColors.red,
+                            icon: AppIcons.icExpense,
+                            value: '\$1,500',
+                            onPressed: () {},
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 50,
+                    ),
+                    TransactionFilter(
+                      onFilterChanged: (i) {
+                        context.read<HomeBloc>().add(ChangeFilterIndex(i));
+                      },
+                      selectedIndex: state.filterIndex,
+                    ),
+                  ],
+                ),
                 if (state.isMenuShow)
                   Align(
                     alignment: Alignment.bottomCenter,
@@ -86,10 +195,12 @@ class _HomePageState extends State<HomePage> {
           ),
           floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
           floatingActionButton: FloatingActionButton(
+            enableFeedback: true,
             onPressed: () {
               context.read<HomeBloc>().add(const ShowMenu());
             },
             backgroundColor: AppColors.primary,
+            isExtended: true,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(100),
             ),
@@ -100,73 +211,78 @@ class _HomePageState extends State<HomePage> {
           ),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.miniCenterDocked,
-          bottomNavigationBar: BottomNavigationBar(
-            type: BottomNavigationBarType.fixed,
-            onTap: (index) {
-              if (state.isMenuShow) {
-                context.read<HomeBloc>().add(const ShowMenu());
-              }
-              context.read<HomeBloc>().add(ChangeIndex(index));
-            },
-            currentIndex: state.currentIndex,
-            backgroundColor: Colors.white,
-            showSelectedLabels: true,
-            showUnselectedLabels: true,
-            items: [
-              BottomNavigationBarItem(
-                icon: SvgPicture.asset(
-                  AppIcons.icHome,
-                  colorFilter: ColorFilter.mode(
-                      state.currentIndex == 0
-                          ? AppColors.primary
-                          : AppColors.light20,
-                      BlendMode.srcIn),
+          bottomNavigationBar: BottomAppBar(
+            notchMargin: 5.0,
+            padding: EdgeInsets.zero,
+            shape: const CircularNotchedRectangle(),
+            child: BottomNavigationBar(
+              type: BottomNavigationBarType.fixed,
+              onTap: (index) {
+                if (state.isMenuShow) {
+                  context.read<HomeBloc>().add(const ShowMenu());
+                }
+                context.read<HomeBloc>().add(ChangeIndex(index));
+              },
+              currentIndex: state.currentIndex,
+              backgroundColor: Colors.white,
+              showSelectedLabels: true,
+              showUnselectedLabels: true,
+              items: [
+                BottomNavigationBarItem(
+                  icon: SvgPicture.asset(
+                    AppIcons.icHome,
+                    colorFilter: ColorFilter.mode(
+                        state.currentIndex == 0
+                            ? AppColors.primary
+                            : AppColors.light20,
+                        BlendMode.srcIn),
+                  ),
+                  label: AppHeading.hHome,
                 ),
-                label: AppHeading.hHome,
-              ),
-              BottomNavigationBarItem(
-                icon: SvgPicture.asset(
-                  AppIcons.icTransaction,
-                  colorFilter: ColorFilter.mode(
-                      state.currentIndex == 1
-                          ? AppColors.primary
-                          : AppColors.light20,
-                      BlendMode.srcIn),
+                BottomNavigationBarItem(
+                  icon: SvgPicture.asset(
+                    AppIcons.icTransaction,
+                    colorFilter: ColorFilter.mode(
+                        state.currentIndex == 1
+                            ? AppColors.primary
+                            : AppColors.light20,
+                        BlendMode.srcIn),
+                  ),
+                  label: AppHeading.hTransactions,
                 ),
-                label: AppHeading.hTransactions,
-              ),
-              BottomNavigationBarItem(
-                icon: SvgPicture.asset(
-                  AppIcons.icBudget,
-                  colorFilter: ColorFilter.mode(
-                      state.currentIndex == 2
-                          ? AppColors.primary
-                          : AppColors.light20,
-                      BlendMode.srcIn),
+                BottomNavigationBarItem(
+                  icon: SvgPicture.asset(
+                    AppIcons.icBudget,
+                    colorFilter: ColorFilter.mode(
+                        state.currentIndex == 2
+                            ? AppColors.primary
+                            : AppColors.light20,
+                        BlendMode.srcIn),
+                  ),
+                  label: AppHeading.hBudget,
                 ),
-                label: AppHeading.hBudget,
-              ),
-              BottomNavigationBarItem(
-                icon: SvgPicture.asset(
-                  AppIcons.icUser,
-                  colorFilter: ColorFilter.mode(
-                      state.currentIndex == 3
-                          ? AppColors.primary
-                          : AppColors.light20,
-                      BlendMode.srcIn),
+                BottomNavigationBarItem(
+                  icon: SvgPicture.asset(
+                    AppIcons.icUser,
+                    colorFilter: ColorFilter.mode(
+                        state.currentIndex == 3
+                            ? AppColors.primary
+                            : AppColors.light20,
+                        BlendMode.srcIn),
+                  ),
+                  label: AppHeading.hProfile,
                 ),
-                label: AppHeading.hProfile,
+              ],
+              selectedLabelStyle: const TextStyle(
+                color: AppColors.primary,
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
               ),
-            ],
-            selectedLabelStyle: const TextStyle(
-              color: AppColors.primary,
-              fontSize: 14,
-              fontWeight: FontWeight.w400,
-            ),
-            unselectedLabelStyle: const TextStyle(
-              color: AppColors.dark,
-              fontSize: 12,
-              fontWeight: FontWeight.w400,
+              unselectedLabelStyle: const TextStyle(
+                color: AppColors.dark,
+                fontSize: 12,
+                fontWeight: FontWeight.w400,
+              ),
             ),
           ),
         );
