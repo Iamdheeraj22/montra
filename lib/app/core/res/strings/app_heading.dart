@@ -25,4 +25,8 @@ class AppHeading {
   static const String hTransactions = 'Transactions';
   static const String hProfile = 'Profile';
   static const String hBudget = 'Budget';
+  static const String hAccountBalance = 'Account Balance';
+  static const String hIncome = 'Income';
+  static const String hTotalExpense = 'Expense';
+  static const String hSpendFrequency = 'Spend Frequency';
 }
