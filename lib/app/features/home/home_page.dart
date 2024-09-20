@@ -11,7 +11,7 @@ import 'package:montra/app/features/home/widgets/home_button_view.dart';
 import 'package:montra/app/features/home/widgets/transaction_filter.dart';
 import 'package:montra/app/features/home/widgets/user_image_view.dart';
 import 'package:montra/app/features/transaction_history/transaction_history_page.dart';
-import 'package:montra/app/features/transaction_history/transaction_view.dart';
+import 'package:montra/app/features/transaction_history/widgets/transaction_view.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
