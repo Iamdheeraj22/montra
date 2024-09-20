@@ -9,8 +9,9 @@ import 'package:montra/app/features/home/model/transaction_model.dart';
 import 'package:montra/app/features/home/widgets/floating_button_item.dart';
 import 'package:montra/app/features/home/widgets/home_button_view.dart';
 import 'package:montra/app/features/home/widgets/transaction_filter.dart';
-import 'package:montra/app/features/home/widgets/transactions_view.dart';
 import 'package:montra/app/features/home/widgets/user_image_view.dart';
+import 'package:montra/app/features/transaction_history/transaction_history_page.dart';
+import 'package:montra/app/features/transaction_history/transaction_view.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -162,7 +163,10 @@ class _HomePageState extends State<HomePage> {
                                 fontWeight: FontWeight.bold),
                           ),
                           GestureDetector(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.pushNamed(
+                                  context, TransactionHistoryPage.id);
+                            },
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(30),
                               child: const ColoredBox(
@@ -186,7 +190,19 @@ class _HomePageState extends State<HomePage> {
                         ],
                       ),
                     ),
-                    TransactionsView(transactions: list),
+                    ListView.builder(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 25,
+                      ),
+                      shrinkWrap: true,
+                      itemCount: list.length,
+                      itemBuilder: (ctx, index) {
+                        final transaction = list[index];
+                        return TransactionView(
+                          transaction: transaction,
+                        );
+                      },
+                    )
                   ],
                 ),
                 if (state.isMenuShow)
@@ -338,17 +354,21 @@ class _HomePageState extends State<HomePage> {
   }
 
   List<TransactionModel> list = [
-    const TransactionModel('35356',
-        title: 'Title',
-        description: 'Description',
-        amount: 100,
-        transactionType: 1,
-        timeStamp: '12:00 PM'),
-    const TransactionModel('35356',
-        title: 'Title',
-        description: 'Description',
-        amount: 100,
-        transactionType: 1,
-        timeStamp: '12:00 PM'),
+    const TransactionModel(
+      '4564654',
+      title: 'Title 7',
+      description: 'Description 7',
+      amount: 70,
+      timeStamp: '2020-06-19T10:31:12.000Z',
+      transactionType: 1,
+    ),
+    const TransactionModel(
+      '4564654',
+      title: 'Title 8',
+      description: 'Description 8',
+      amount: 80,
+      timeStamp: '2020-06-19T10:31:12.000Z',
+      transactionType: 2,
+    ),
   ];
 }
