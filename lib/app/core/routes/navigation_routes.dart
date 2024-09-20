@@ -12,6 +12,7 @@ import 'package:montra/app/features/home/bloc/home_bloc.dart';
 import 'package:montra/app/features/home/home_page.dart';
 import 'package:montra/app/features/on_boarding/on_boarding_screen.dart';
 import 'package:montra/app/features/splash_screen/splash_screen.dart';
+import 'package:montra/app/features/transaction_history/transaction_history_page.dart';
 
 class NavigationRoutes {
   NavigationRoutes._internal();
@@ -76,6 +77,11 @@ class NavigationRoutes {
             create: (_) => EmailVerificationCubit(),
             child: EmailVerificationScreen(email: email),
           ),
+        );
+      case TransactionHistoryPage.id:
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (_) => const TransactionHistoryPage(),
         );
       default:
         return MaterialPageRoute(
