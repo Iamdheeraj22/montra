@@ -6,6 +6,7 @@ class AppIcons {
   static const String path = 'assets/icons/';
 
   static const String icArrowDown = '${path}arrow_down.svg';
+  static const String icArrowRight = '${path}arrow_right.svg';
   static const String icBudget = '${path}budget.svg';
   static const String icExpense = '${path}expenses.svg';
   static const String icHome = '${path}home.svg';
@@ -17,4 +18,7 @@ class AppIcons {
   static const String icFood = '${path}food.svg';
   static const String icShopping = '${path}shopping.svg';
   static const String icSubscription = '${path}subscription.svg';
+  static const String icTransport = '${path}transportation.svg';
+  static const String icFilter = '${path}filter.svg';
+  static const String icSalary = '${path}salary.svg';
 }
