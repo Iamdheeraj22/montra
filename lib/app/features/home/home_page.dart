@@ -5,9 +5,11 @@ import 'package:montra/app/core/res/app_colors.dart';
 import 'package:montra/app/core/res/app_icons.dart';
 import 'package:montra/app/core/res/strings/app_heading.dart';
 import 'package:montra/app/features/home/bloc/home_bloc.dart';
+import 'package:montra/app/features/home/model/transaction_model.dart';
 import 'package:montra/app/features/home/widgets/floating_button_item.dart';
 import 'package:montra/app/features/home/widgets/home_button_view.dart';
 import 'package:montra/app/features/home/widgets/transaction_filter.dart';
+import 'package:montra/app/features/home/widgets/transactions_view.dart';
 import 'package:montra/app/features/home/widgets/user_image_view.dart';
 
 class HomePage extends StatefulWidget {
@@ -134,12 +136,57 @@ class _HomePageState extends State<HomePage> {
                     const SizedBox(
                       height: 50,
                     ),
+
+                    //Transaction Filter
                     TransactionFilter(
                       onFilterChanged: (i) {
                         context.read<HomeBloc>().add(ChangeFilterIndex(i));
                       },
                       selectedIndex: state.filterIndex,
                     ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 15,
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Text(
+                            AppHeading.hRecentTransactions,
+                            style: TextStyle(
+                                fontSize: 24,
+                                color: AppColors.dark,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          GestureDetector(
+                            onTap: () {},
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(30),
+                              child: const ColoredBox(
+                                color: AppColors.primary20,
+                                child: Padding(
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal: 25,
+                                    vertical: 5,
+                                  ),
+                                  child: Text(
+                                    AppHeading.hSeeAll,
+                                    style: TextStyle(
+                                        fontSize: 18,
+                                        color: AppColors.primary,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    TransactionsView(transactions: list),
                   ],
                 ),
                 if (state.isMenuShow)
@@ -289,4 +336,19 @@ class _HomePageState extends State<HomePage> {
       },
     );
   }
+
+  List<TransactionModel> list = [
+    const TransactionModel('35356',
+        title: 'Title',
+        description: 'Description',
+        amount: 100,
+        transactionType: 1,
+        timeStamp: '12:00 PM'),
+    const TransactionModel('35356',
+        title: 'Title',
+        description: 'Description',
+        amount: 100,
+        transactionType: 1,
+        timeStamp: '12:00 PM'),
+  ];
 }
