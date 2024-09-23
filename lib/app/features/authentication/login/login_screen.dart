@@ -9,7 +9,7 @@ import 'package:montra/app/features/authentication/email_verification/email_veri
 import 'package:montra/app/features/authentication/forget_password/forget_password_screen.dart';
 import 'package:montra/app/features/authentication/login/bloc/login_bloc.dart';
 import 'package:montra/app/features/authentication/sign_up/sign_up_screen.dart';
-import 'package:montra/app/features/home/home_page.dart';
+import 'package:montra/app/features/dashboard/pages/dashboard_page.dart';
 import 'package:montra/app/features/on_boarding/on_boarding_screen.dart';
 import 'package:montra/app/reusable_widgets/button.dart';
 import 'package:montra/app/reusable_widgets/edit_text.dart';
@@ -33,7 +33,7 @@ class _LoginScreenState extends State<LoginScreen> {
       listener: (context, state) {
         if (state.status == LoginStatus.success) {
           Navigator.pushNamedAndRemoveUntil(
-              context, HomePage.id, (route) => false);
+              context, DashboardPage.id, (route) => false);
           return;
         }
         if (state.status == LoginStatus.emailNotVerified) {

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:montra/app/core/res/app_colors.dart';
 import 'package:montra/app/core/user_state/user_state_bloc.dart';
-import 'package:montra/app/features/home/home_page.dart';
+import 'package:montra/app/features/dashboard/pages/dashboard_page.dart';
 import 'package:montra/app/features/on_boarding/on_boarding_screen.dart';
 import 'package:montra/app/storage/storage_service.dart';
 
@@ -23,7 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
         if (mounted) {
           if (isLogin ?? false) {
             context.read<UserStateBloc>().add(GetUserDetails());
-            Navigator.pushReplacementNamed(context, HomePage.id);
+            Navigator.pushReplacementNamed(context, DashboardPage.id);
             return;
           }
           Navigator.pushReplacementNamed(context, OnBoardingScreen.id);

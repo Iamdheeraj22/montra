@@ -6,8 +6,8 @@ import 'package:montra/app/core/res/app_colors.dart';
 import 'package:montra/app/core/res/app_icons.dart';
 import 'package:montra/app/core/res/strings/app_heading.dart';
 import 'package:montra/app/core/utils/date_time_utils.dart';
-import 'package:montra/app/features/home/model/transaction_model.dart';
-import 'package:montra/app/features/transaction_history/widgets/transaction_view.dart';
+import 'package:montra/app/features/dashboard/pages/home/model/transaction_model.dart';
+import 'package:montra/app/features/dashboard/pages/transaction_history/widgets/transaction_view.dart';
 
 class TransactionHistoryPage extends StatefulWidget {
   const TransactionHistoryPage({super.key});
@@ -24,7 +24,6 @@ class _TransactionHistoryPageState extends State<TransactionHistoryPage> {
       appBar: AppBar(
         surfaceTintColor: Colors.transparent,
         backgroundColor: Colors.white,
-        centerTitle: true,
         title: InkWell(
           borderRadius: BorderRadius.circular(30),
           onTap: () {},

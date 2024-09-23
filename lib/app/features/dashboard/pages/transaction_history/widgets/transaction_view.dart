@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:montra/app/core/res/app_colors.dart';
 import 'package:montra/app/core/res/app_icons.dart';
 import 'package:montra/app/core/utils/date_time_utils.dart';
-import 'package:montra/app/features/home/model/transaction_model.dart';
+import 'package:montra/app/features/dashboard/pages/home/model/transaction_model.dart';
 import 'package:tuple/tuple.dart';
 
 class TransactionView extends StatelessWidget {
