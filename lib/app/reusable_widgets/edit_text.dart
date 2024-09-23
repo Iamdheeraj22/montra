@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:montra/app/core/res/app_colors.dart';
 
 class EditText extends StatelessWidget {
@@ -15,6 +16,7 @@ class EditText extends StatelessWidget {
     this.suffix,
     this.contentPadding,
     this.enabled,
+    this.inputFormatters = const [],
   });
   final String hintText;
   final TextEditingController? controller;
@@ -27,6 +29,7 @@ class EditText extends StatelessWidget {
   final EdgeInsetsGeometry? contentPadding;
   final bool? obscureText;
   final bool? enabled;
+  final List<TextInputFormatter> inputFormatters;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -37,6 +40,7 @@ class EditText extends StatelessWidget {
       validator: validator,
       enabled: enabled ?? true,
       obscureText: obscureText ?? false,
+      inputFormatters: inputFormatters,
       decoration: InputDecoration(
         contentPadding: const EdgeInsets.only(
           left: 20,
