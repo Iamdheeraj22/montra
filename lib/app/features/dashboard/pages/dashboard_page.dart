@@ -90,7 +90,7 @@ class _DashboardPageState extends State<DashboardPage> {
           floatingActionButton: FloatingActionButton(
             enableFeedback: true,
             onPressed: () {
-              // context.read<HomeBloc>().add(const ShowMenu());
+              context.read<DashboardBloc>().add(const ShowMenu());
             },
             backgroundColor: AppColors.primary,
             isExtended: true,
