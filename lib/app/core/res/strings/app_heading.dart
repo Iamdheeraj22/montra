@@ -29,4 +29,12 @@ class AppHeading {
   static const String hIncome = 'Income';
   static const String hTotalExpense = 'Expense';
   static const String hSpendFrequency = 'Spend Frequency';
+  static const String hToday = 'Today';
+  static const String hWeek = 'Week';
+  static const String hMonth = 'Month';
+  static const String hYear = 'Year';
+  static const String hRecentTransactions = 'Recent Transactions';
+  static const String hSeeAll = 'See All';
+  static const String hSeeYourFinancialReport = 'See your financial report';
+  static const String hYesterday = 'Yesterday';
 }
