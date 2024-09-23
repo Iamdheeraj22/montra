@@ -11,6 +11,7 @@ import 'package:montra/app/features/authentication/sign_up/sign_up_screen.dart';
 import 'package:montra/app/features/dashboard/bloc/dashboard_bloc.dart';
 import 'package:montra/app/features/dashboard/pages/dashboard_page.dart';
 import 'package:montra/app/features/dashboard/pages/transaction_history/transaction_history_page.dart';
+import 'package:montra/app/features/notification/notification_page.dart';
 import 'package:montra/app/features/on_boarding/on_boarding_screen.dart';
 import 'package:montra/app/features/splash_screen/splash_screen.dart';
 
@@ -82,6 +83,11 @@ class NavigationRoutes {
         return MaterialPageRoute(
           settings: settings,
           builder: (_) => const TransactionHistoryPage(),
+        );
+      case NotificationPage.id:
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (_) => const NotificationPage(),
         );
       default:
         return MaterialPageRoute(

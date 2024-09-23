@@ -11,6 +11,7 @@ import 'package:montra/app/features/dashboard/pages/home/widgets/transaction_fil
 import 'package:montra/app/features/dashboard/pages/home/widgets/user_image_view.dart';
 import 'package:montra/app/features/dashboard/pages/transaction_history/transaction_history_page.dart';
 import 'package:montra/app/features/dashboard/pages/transaction_history/widgets/transaction_view.dart';
+import 'package:montra/app/features/notification/notification_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -80,7 +81,9 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                       IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pushNamed(context, NotificationPage.id);
+                        },
                         icon: SvgPicture.asset(
                           AppIcons.icNotification,
                           colorFilter: const ColorFilter.mode(
