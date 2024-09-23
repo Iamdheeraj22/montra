@@ -8,11 +8,11 @@ import 'package:montra/app/features/authentication/login/bloc/login_bloc.dart';
 import 'package:montra/app/features/authentication/login/login_screen.dart';
 import 'package:montra/app/features/authentication/sign_up/bloc/sign_up_bloc.dart';
 import 'package:montra/app/features/authentication/sign_up/sign_up_screen.dart';
-import 'package:montra/app/features/home/bloc/home_bloc.dart';
-import 'package:montra/app/features/home/home_page.dart';
+import 'package:montra/app/features/dashboard/bloc/dashboard_bloc.dart';
+import 'package:montra/app/features/dashboard/pages/dashboard_page.dart';
+import 'package:montra/app/features/dashboard/pages/transaction_history/transaction_history_page.dart';
 import 'package:montra/app/features/on_boarding/on_boarding_screen.dart';
 import 'package:montra/app/features/splash_screen/splash_screen.dart';
-import 'package:montra/app/features/transaction_history/transaction_history_page.dart';
 
 class NavigationRoutes {
   NavigationRoutes._internal();
@@ -61,12 +61,12 @@ class NavigationRoutes {
             email: email,
           ),
         );
-      case HomePage.id:
+      case DashboardPage.id:
         return MaterialPageRoute(
           settings: settings,
           builder: (_) => BlocProvider(
-            create: (_) => HomeBloc(),
-            child: const HomePage(),
+            create: (_) => DashboardBloc(),
+            child: const DashboardPage(),
           ),
         );
       case EmailVerificationScreen.id:
