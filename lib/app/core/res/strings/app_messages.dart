@@ -43,4 +43,10 @@ class AppMessages {
       'Email is not registered yet, please sign up first';
   static const String sUserDetailsNotFound = 'User details not found';
   static const String sNotAvailable = 'Not available';
+  static const String mUnderDevelopment = 'Under Development';
+  static const String mNotificationMessage = 'There is no notification for now';
+  static const String hAmount = 'Amount';
+  static const String mEnterAmount = 'Enter amount';
+  static const String sAmountEmpty = 'Amount cannot be empty';
+  static const String sAmountLessThanZero = 'Amount cannot be less than zero';
 }
