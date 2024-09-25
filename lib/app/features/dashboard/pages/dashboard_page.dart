@@ -8,6 +8,7 @@ import 'package:montra/app/features/dashboard/bloc/dashboard_bloc.dart';
 import 'package:montra/app/features/dashboard/pages/home/bloc/home_bloc.dart';
 import 'package:montra/app/features/dashboard/pages/home/home_page.dart';
 import 'package:montra/app/features/dashboard/pages/home/widgets/floating_button_item.dart';
+import 'package:montra/app/features/dashboard/pages/new_transaction/new_transaction_page.dart';
 import 'package:montra/app/features/dashboard/pages/transaction_history/transaction_history_page.dart';
 
 class DashboardPage extends StatefulWidget {
@@ -61,7 +62,11 @@ class _DashboardPageState extends State<DashboardPage> {
                           FloatingButtonItem(
                             icon: AppIcons.icTransfer,
                             color: AppColors.blue,
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.pushNamed(
+                                  context, NewTransactionPage.id,
+                                  arguments: 2);
+                            },
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -69,13 +74,21 @@ class _DashboardPageState extends State<DashboardPage> {
                               FloatingButtonItem(
                                 icon: AppIcons.icIncome,
                                 color: AppColors.green,
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.pushNamed(
+                                      context, NewTransactionPage.id,
+                                      arguments: 1);
+                                },
                               ),
                               const SizedBox(width: 100),
                               FloatingButtonItem(
                                 icon: AppIcons.icExpense,
                                 color: AppColors.red,
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.pushNamed(
+                                      context, NewTransactionPage.id,
+                                      arguments: 3);
+                                },
                               )
                             ],
                           )

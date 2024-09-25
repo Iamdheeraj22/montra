@@ -10,6 +10,7 @@ import 'package:montra/app/features/authentication/sign_up/bloc/sign_up_bloc.dar
 import 'package:montra/app/features/authentication/sign_up/sign_up_screen.dart';
 import 'package:montra/app/features/dashboard/bloc/dashboard_bloc.dart';
 import 'package:montra/app/features/dashboard/pages/dashboard_page.dart';
+import 'package:montra/app/features/dashboard/pages/new_transaction/new_transaction_page.dart';
 import 'package:montra/app/features/dashboard/pages/transaction_history/transaction_history_page.dart';
 import 'package:montra/app/features/notification/notification_page.dart';
 import 'package:montra/app/features/on_boarding/on_boarding_screen.dart';
@@ -22,6 +23,7 @@ class NavigationRoutes {
   static String previousRoute = '';
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
     previousRoute = settings.name ?? '';
+
     switch (settings.name) {
       case SplashScreen.id:
         return MaterialPageRoute(
@@ -88,6 +90,14 @@ class NavigationRoutes {
         return MaterialPageRoute(
           settings: settings,
           builder: (_) => const NotificationPage(),
+        );
+      case NewTransactionPage.id:
+        final transactionType = settings.arguments as int;
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (_) => NewTransactionPage(
+            transactionType: transactionType,
+          ),
         );
       default:
         return MaterialPageRoute(
