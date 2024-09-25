@@ -21,4 +21,5 @@ class AppIcons {
   static const String icTransport = '${path}transportation.svg';
   static const String icFilter = '${path}filter.svg';
   static const String icSalary = '${path}salary.svg';
+  static const String icAttachment = '${path}attachment.svg';
 }
